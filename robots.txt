@@ -1,0 +1,32 @@
+# AI Crawler & Search Engine Policy - Zakaria Rajib
+# Last updated: 2026-09-05
+
+User-agent: *
+Allow: /
+
+# --- AI Citation & Search-Augmented Crawlers ---
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# --- Block Unwanted Aggressive Scrapers ---
+User-agent: Bytespider
+Disallow: /
+
+User-agent: CCBot
+Allow: /
+
+# Discovery Files
+Sitemap: https://zakaria.com.bd/sitemap.xml
+LLMs-Txt: https://zakaria.com.bd/llms.txt

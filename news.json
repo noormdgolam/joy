@@ -1,0 +1,51 @@
+{
+  "updatedAt": "2026-09-05T09:30:00Z",
+  "categories": {
+    "fashion-textile": [
+      {
+        "title": "Bangladesh Apparel Exports Advance Toward Circular Denim and Low-Impact Washes",
+        "link": "https://example.com/apparel-circular-denim-advances",
+        "snippet": "Dhaka manufacturing units expand investments in ozone-finishing and post-industrial cotton recycling to meet European sustainability benchmarks.",
+        "source": "Textile Today International",
+        "pubDate": "2026-09-04T14:15:00Z"
+      },
+      {
+        "title": "Global Demand for Natural Golden Fibre Spurs Modernized Jute Geotextiles",
+        "link": "https://example.com/jute-geotextiles-global-demand",
+        "snippet": "Eco-conscious infrastructure projects worldwide are turning to biodegradable Bangladesh jute mats and architectural craft composites.",
+        "source": "Fibre2Fashion Review",
+        "pubDate": "2026-09-02T11:00:00Z"
+      },
+      {
+        "title": "Knitwear Manufacturers Embrace Digital Sourcing and Tier-1 Traceability",
+        "link": "https://example.com/knitwear-digital-traceability",
+        "snippet": "Independent suppliers in Uttara and Gazipur integrate cloud-based batch tracing, offering rapid turnarounds on custom orders.",
+        "source": "Apparel Resources Asia",
+        "pubDate": "2026-08-29T08:45:00Z"
+      }
+    ],
+    "business": [
+      {
+        "title": "South Asian Cross-Border Supply Chains Prioritize Agile Boutique Fulfillment",
+        "link": "https://example.com/agile-boutique-fulfillment",
+        "snippet": "B2B buyers shift from oversized minimum order quantities to flexible, multi-category fulfillment hubs connecting Dhaka with international markets.",
+        "source": "Trade & Logistics Quarterly",
+        "pubDate": "2026-09-05T07:20:00Z"
+      },
+      {
+        "title": "Smart Tech Accessories Market Shows Strong Growth in Everyday EDC Essentials",
+        "link": "https://example.com/smart-tech-accessories-edc-growth",
+        "snippet": "Braided cables, magnetic modular power banks, and minimalist desk organizers continue gaining market share across wholesale and direct channels.",
+        "source": "Consumer Tech Review",
+        "pubDate": "2026-09-03T16:00:00Z"
+      },
+      {
+        "title": "Export Diversification Strategy Gains Traction in High-Value Artisan Goods",
+        "link": "https://example.com/export-diversification-artisan-goods",
+        "snippet": "Government export initiatives highlight premium handcraft and diversified lifestyle products as key pillars alongside core apparel lines.",
+        "source": "Dhaka Commerce & Industry Ledger",
+        "pubDate": "2026-08-30T10:30:00Z"
+      }
+    ]
+  }
+}
