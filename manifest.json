@@ -1,0 +1,23 @@
+{
+  "name": "Zakaria Rajib — Sourcing, Wholesale & Tourism",
+  "short_name": "Zakaria",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDFDFB",
+  "theme_color": "#31506E",
+  "description": "Quiet, considered wholesale sourcing, clothing, jute & handcraft, tech accessories, and tourism services based in Dhaka.",
+  "icons": [
+    {
+      "src": "/assets/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -370,6 +370,12 @@
   });
 
   // Expose global controller for automated agent discovery & testing
+  const trustDateEl = document.getElementById('trust-date');
+  if (trustDateEl) {
+    const now = new Date();
+    trustDateEl.textContent = 'Last Updated: ' + now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  }
+
   window.ZakariaSite = {
     filterJournal: setActiveCategory,
     getActiveCategory: () => activeCat,
