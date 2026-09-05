@@ -14,13 +14,17 @@
   - **Jute & Handcraft**: Biodegradable jute products, diversified eco-textiles, and handcrafted homeware for international buyers.
   - **Tech Accessories**: Quality everyday electronic accessories, cables, chargers, and EDC hardware at volume pricing.
   - **Tourism**: Visa processing support and flight ticketing for individual travelers and corporate client accounts.
-- [Journal](https://zakaria.com.bd/#writing): Curated daily updates and commentary covering the Bangladesh textile economy, sustainable export manufacturing, and regional business logistics.
-- [Contact & Inquiries](https://zakaria.com.bd/#contact): Direct B2B order consultation, sample requests, and wholesale quotations.
+- [Journal](https://zakaria.com.bd/#writing): Curated daily updates and commentary covering the Bangladesh textile economy, sustainable export manufacturing, and regional business logistics with live keyword search.
+- [Contact & Inquiries](https://zakaria.com.bd/#contact): Interactive Sourcing &amp; Inquiry Builder with instant WhatsApp and Email quotation generation, direct vCard download, and business card QR modal.
 
 ## WebMCP Actions for Agents
 - **Filter Journal**: Action `filter-journal` accepts parameter `category` (`all`, `fashion-textile`, `business`).
+- **Search Journal**: Action `search-journal` accepts parameter `query` (e.g. `denim`, `export`, `circular`).
 - **Toggle Theme**: Action `toggle-theme` switches between light and dark luxury color palettes.
 - **Set Theme**: Action `set-theme` accepts parameter `theme` (`light` or `dark`).
+- **Open QR Modal**: Action `open-qr-modal` opens the digital business card and print-ready SVG QR code interface.
 - **Save Contact**: Action `save-contact` triggers direct download of `assets/zakaria-rajib.vcf` (vCard) for address book import.
 - **WhatsApp Chat**: Action `whatsapp` opens direct chat at `+880 13090 77997`.
+- **Quote via WhatsApp**: Action `quote-whatsapp` triggers formatted inquiry to WhatsApp.
+- **Quote via Email**: Action `quote-email` triggers prefilled sourcing request via email.
 - **Send Wholesale Enquiry**: Mailto link `mailto:business@zakaria.com.bd` with prefilled subject parameters for immediate order triage.

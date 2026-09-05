@@ -165,8 +165,8 @@
   </div>
 
   <div class="wrap">
-    <!-- Header -->
-    <header>
+    <!-- Header with Glassmorphic Sticky Nav -->
+    <header id="site-header">
       <div class="header-row">
         <div class="brand">
           <a href="#" aria-label="Zakaria Home">
@@ -179,7 +179,19 @@
             <a href="#writing" id="nav-writing">Journal</a>
             <a href="#contact" id="nav-contact">Contact</a>
           </nav>
-          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button" data-mcp-action="toggle-theme">
+          
+          <!-- Digital Business Card / QR Trigger -->
+          <button id="qr-modal-btn" class="header-btn" aria-label="Open digital business card and QR code" type="button" data-mcp-action="open-qr-modal" title="Digital Business Card &amp; QR">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </button>
+
+          <!-- Light / Dark Theme Toggle -->
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button" data-mcp-action="toggle-theme" title="Toggle theme">
             <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.4A9 9 0 1 1 11.6 3a7 7 0 0 0 9.4 9.4Z"/></svg>
             <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
           </button>
@@ -284,17 +296,22 @@
         </div>
       </section>
 
-      <!-- Section: Journal -->
+      <!-- Section: Journal with Live Filter Search -->
       <section id="writing" aria-labelledby="writing-title">
         <h2 class="section-label" id="writing-title">Journal</h2>
         <p class="entity-heading">Textile Intelligence &amp; Industry Market Analysis</p>
         <p class="section-intro">Daily fashion &amp; textile and business headlines, pulled automatically from established news sources. <span id="journal-updated"></span></p>
 
-        <!-- Category Tabs -->
-        <div class="journal-tabs" role="tablist" aria-label="Journal Categories">
-          <button class="journal-tab active" data-cat="all" id="tab-all" data-mcp-action="filter-journal" data-mcp-category="all">All</button>
-          <button class="journal-tab" data-cat="fashion-textile" id="tab-fashion" data-mcp-action="filter-journal" data-mcp-category="fashion-textile">Fashion &amp; Textile</button>
-          <button class="journal-tab" data-cat="business" id="tab-business" data-mcp-action="filter-journal" data-mcp-category="business">Business</button>
+        <!-- Search and Category Filters -->
+        <div class="journal-controls">
+          <div class="journal-search-wrap">
+            <input type="search" id="journal-search" class="journal-search" placeholder="Search textile, apparel, or business headlines…" aria-label="Search journal headlines" data-mcp-action="search-journal">
+          </div>
+          <div class="journal-tabs" role="tablist" aria-label="Journal Categories">
+            <button class="journal-tab active" data-cat="all" id="tab-all" data-mcp-action="filter-journal" data-mcp-category="all">All</button>
+            <button class="journal-tab" data-cat="fashion-textile" id="tab-fashion" data-mcp-action="filter-journal" data-mcp-category="fashion-textile">Fashion &amp; Textile</button>
+            <button class="journal-tab" data-cat="business" id="tab-business" data-mcp-action="filter-journal" data-mcp-category="business">Business</button>
+          </div>
         </div>
 
         <!-- Journal Entries Container -->
@@ -303,7 +320,7 @@
         </div>
       </section>
 
-      <!-- Section: Get In Touch -->
+      <!-- Section: Get In Touch & Smart Quote Sheet -->
       <section id="contact" class="contact-section" aria-labelledby="contact-title">
         <h2 class="section-label" id="contact-title">Get in touch</h2>
         <p class="entity-heading">Commercial Consultation &amp; Direct Procurement</p>
@@ -326,6 +343,54 @@
              download="Zakaria-Rajib.vcf"
              id="save-contact-btn"
              data-mcp-action="save-contact">Save Contact (vCard)</a>
+          <button class="cta-btn outline" 
+                  id="contact-qr-btn" 
+                  type="button" 
+                  data-mcp-action="open-qr-modal">Digital Card / QR</button>
+        </div>
+
+        <!-- Interactive Smart Quote & Sourcing Sheet -->
+        <div class="quote-card" role="region" aria-label="Interactive Sourcing and Quotation Sheet">
+          <div class="quote-card-header">
+            <h3 class="quote-card-title">Instant Sourcing &amp; Inquiry Builder</h3>
+            <p class="quote-card-sub">Select your sourcing requirement below for an immediate formatted WhatsApp or Email draft.</p>
+          </div>
+
+          <form id="quote-form" onsubmit="return false;">
+            <div class="quote-form-grid">
+              <div class="form-group">
+                <label for="quote-product">Product Pillar</label>
+                <select id="quote-product" class="quote-select">
+                  <option value="Clothing">Clothing (Apparel &amp; Knitwear)</option>
+                  <option value="Jute &amp; handcraft">Jute &amp; Artisan Handcraft</option>
+                  <option value="Tech accessories">Everyday Tech Accessories</option>
+                  <option value="Tourism">Tourism (Visa &amp; Air Tickets)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="quote-type">Order Requirement</label>
+                <select id="quote-type" class="quote-select">
+                  <option value="Wholesale Bulk">Wholesale Bulk Export</option>
+                  <option value="Custom Production">Custom Production Run</option>
+                  <option value="Sample Order">Sample Evaluation Order</option>
+                  <option value="Corporate Travel">Corporate Travel / Ticketing</option>
+                </select>
+              </div>
+              <div class="form-group full-width">
+                <label for="quote-notes">Specification &amp; Quantity (Optional)</label>
+                <input type="text" id="quote-notes" class="quote-input" placeholder="e.g. 500 pcs denim shirts, or Dhaka to London corporate tickets…">
+              </div>
+            </div>
+
+            <div class="quote-buttons">
+              <button type="button" class="cta-btn" id="quote-whatsapp-btn" data-mcp-action="quote-whatsapp">
+                Request via WhatsApp
+              </button>
+              <button type="button" class="cta-btn outline" id="quote-email-btn" data-mcp-action="quote-email">
+                Request via Email
+              </button>
+            </div>
+          </form>
         </div>
 
         <div class="contact-details">
@@ -349,6 +414,32 @@
       </div>
     </footer>
   </div>
+
+  <!-- Modal: Digital Business Card & Print-Ready QR Code -->
+  <div id="qr-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-card-title">
+    <div class="modal-container">
+      <button id="modal-close" class="modal-close-btn" aria-label="Close modal">&times;</button>
+      <div class="modal-content">
+        <h3 id="modal-card-title" class="modal-title">Zakaria Rajib</h3>
+        <p class="modal-subtitle">Dhaka, Bangladesh · Wholesale &amp; Sourcing Specialist</p>
+        
+        <div class="qr-preview-box">
+          <img src="assets/qr-code.svg" alt="Zakaria Rajib Website QR Code" width="160" height="160">
+        </div>
+
+        <p style="font-size: 13px; color: var(--muted); margin: 0 0 16px;">Scan with your phone camera to open portfolio or download high-res vector for printing on physical business cards.</p>
+
+        <div class="modal-btn-row">
+          <a href="assets/qr-code.svg" download="zakaria-rajib-qr.svg" class="cta-btn small">Download QR Code (SVG Vector)</a>
+          <a href="assets/zakaria-rajib.vcf" download="Zakaria-Rajib.vcf" class="cta-btn outline small">Save Contact (vCard)</a>
+          <button type="button" id="copy-link-btn" class="cta-btn outline small">Copy Website Link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Alert Notice -->
+  <div id="toast" class="toast-notice" role="status" aria-live="polite"></div>
 
   <script src="js/main.js" defer></script>
 </body>

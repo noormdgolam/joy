@@ -5,6 +5,19 @@
 (function () {
   'use strict';
 
+  // --- Toast Notification Helper ---
+  const toast = document.getElementById('toast');
+  let toastTimer = null;
+  function showToast(message) {
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2800);
+  }
+
   // --- Splash Screen Controller ---
   const splash = document.getElementById('splash');
   if (splash) {
@@ -79,23 +92,135 @@
     toggleBtn.addEventListener('click', toggleTheme);
   }
 
-  // --- Journal & Category Controller ---
+  // --- Sticky Glass Header & Scroll Spy ---
+  const siteHeader = document.getElementById('site-header');
+  const navLinks = document.querySelectorAll('nav a');
+  const trackedSections = document.querySelectorAll('section[id]');
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY || window.pageYOffset;
+    if (siteHeader) {
+      siteHeader.classList.toggle('is-sticky', scrollY > 70);
+    }
+  }, { passive: true });
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach((link) => {
+            const href = link.getAttribute('href');
+            link.classList.toggle('nav-active', href === `#${id}`);
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -60% 0px' });
+
+    trackedSections.forEach((sec) => observer.observe(sec));
+  }
+
+  // --- Digital Card & QR Code Modal Controller ---
+  const qrModal = document.getElementById('qr-modal');
+  const qrOpenBtns = [
+    document.getElementById('qr-modal-btn'),
+    document.getElementById('contact-qr-btn')
+  ].filter(Boolean);
+  const modalCloseBtn = document.getElementById('modal-close');
+  const copyLinkBtn = document.getElementById('copy-link-btn');
+
+  function openQRModal() {
+    if (!qrModal) return;
+    qrModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeQRModal() {
+    if (!qrModal) return;
+    qrModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  qrOpenBtns.forEach((btn) => btn.addEventListener('click', openQRModal));
+  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeQRModal);
+
+  if (qrModal) {
+    qrModal.addEventListener('click', (e) => {
+      if (e.target === qrModal) closeQRModal();
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && qrModal && qrModal.classList.contains('active')) {
+      closeQRModal();
+    }
+  });
+
+  if (copyLinkBtn) {
+    copyLinkBtn.addEventListener('click', () => {
+      const shareUrl = window.location.origin && window.location.origin !== 'null'
+        ? window.location.href.split('#')[0]
+        : 'https://zakaria.com.bd';
+      
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(shareUrl)
+          .then(() => showToast('Portfolio link copied to clipboard!'))
+          .catch(() => showToast('Link: ' + shareUrl));
+      } else {
+        showToast('Link: ' + shareUrl);
+      }
+    });
+  }
+
+  // --- Smart Quotation Builder ---
+  const quoteProduct = document.getElementById('quote-product');
+  const quoteType = document.getElementById('quote-type');
+  const quoteNotes = document.getElementById('quote-notes');
+  const quoteWhatsAppBtn = document.getElementById('quote-whatsapp-btn');
+  const quoteEmailBtn = document.getElementById('quote-email-btn');
+
+  function buildQuotePayload() {
+    const product = quoteProduct ? quoteProduct.value : 'Clothing';
+    const type = quoteType ? quoteType.value : 'Wholesale Bulk';
+    const notes = quoteNotes && quoteNotes.value.trim() ? quoteNotes.value.trim() : '';
+    return { product, type, notes };
+  }
+
+  function sendQuoteWhatsApp() {
+    const { product, type, notes } = buildQuotePayload();
+    let text = `Hello Zakaria,\nI would like to request a quotation for ${product}.\nOrder Requirement: ${type}.`;
+    if (notes) text += `\nSpecification / Quantity: ${notes}`;
+    const url = `https://wa.me/8801309077997?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+
+  function sendQuoteEmail() {
+    const { product, type, notes } = buildQuotePayload();
+    const subject = `Sourcing & Quotation Inquiry: ${product} (${type})`;
+    let body = `Dear Zakaria Rajib,\n\nI am reaching out regarding sourcing ${product}.\n\nOrder Requirement: ${type}\n`;
+    if (notes) body += `Specification / Volume: ${notes}\n\n`;
+    body += `Please provide bulk terms and quotation at your earliest convenience.\n\nBest regards,`;
+    const mailto = `mailto:business@zakaria.com.bd?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+  }
+
+  if (quoteWhatsAppBtn) quoteWhatsAppBtn.addEventListener('click', sendQuoteWhatsApp);
+  if (quoteEmailBtn) quoteEmailBtn.addEventListener('click', sendQuoteEmail);
+
+  // --- Journal, Search & Category Controller ---
   const container = document.getElementById('journal-entries');
   const updatedLabel = document.getElementById('journal-updated');
   const tabs = document.querySelectorAll('.journal-tab');
+  const searchInput = document.getElementById('journal-search');
   let newsData = null;
   let activeCat = 'all';
+  let searchQuery = '';
 
   const CATEGORY_LABELS = {
     'fashion-textile': 'Fashion & Textile',
     'business': 'Business',
   };
 
-  /**
-   * Format ISO date string into readable short format
-   * @param {string} iso
-   * @returns {string}
-   */
   function formatDate(iso) {
     if (!iso) return '';
     const d = new Date(iso);
@@ -103,9 +228,6 @@
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   }
 
-  /**
-   * Render news entries according to active category filter
-   */
   function render() {
     if (!container) return;
 
@@ -119,12 +241,23 @@
       ? availableCats
       : [activeCat];
 
-    const items = targetCats
+    let items = targetCats
       .flatMap((cat) => (newsData.categories[cat] || []).map((item) => ({ ...item, cat })))
       .sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
 
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      items = items.filter((item) => 
+        (item.title && item.title.toLowerCase().includes(q)) ||
+        (item.snippet && item.snippet.toLowerCase().includes(q)) ||
+        (item.source && item.source.toLowerCase().includes(q))
+      );
+    }
+
     if (items.length === 0) {
-      container.innerHTML = '<p class="journal-fallback">No headlines available for this category right now.</p>';
+      container.innerHTML = searchQuery
+        ? `<p class="journal-fallback">No headlines found matching "${searchQuery}".</p>`
+        : '<p class="journal-fallback">No headlines available for this category right now.</p>';
       return;
     }
 
@@ -143,10 +276,6 @@
     `).join('');
   }
 
-  /**
-   * Set active category and update tab UI
-   * @param {string} category
-   */
   function setActiveCategory(category) {
     activeCat = category;
     tabs.forEach((tab) => {
@@ -157,7 +286,6 @@
     render();
   }
 
-  // Bind tab click and keyboard navigation
   tabs.forEach((tab, index) => {
     tab.setAttribute('role', 'tab');
     tab.setAttribute('aria-selected', tab.classList.contains('active') ? 'true' : 'false');
@@ -181,6 +309,13 @@
       }
     });
   });
+
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim();
+      render();
+    });
+  }
 
   // Fetch news data
   fetch('news.json', { cache: 'no-store' })
@@ -209,25 +344,41 @@
     const { action, params } = event.detail || {};
     if (action === 'filter-journal' && params && params.category) {
       setActiveCategory(params.category);
+    } else if (action === 'search-journal' && params && params.query) {
+      if (searchInput) {
+        searchInput.value = params.query;
+      }
+      searchQuery = params.query.trim();
+      render();
     } else if (action === 'toggle-theme') {
       toggleTheme();
     } else if (action === 'set-theme' && params && params.theme) {
       setTheme(params.theme);
+    } else if (action === 'open-qr-modal') {
+      openQRModal();
     } else if (action === 'save-contact') {
       const saveBtn = document.getElementById('save-contact-btn');
       if (saveBtn) saveBtn.click();
     } else if (action === 'whatsapp') {
       const waBtn = document.getElementById('whatsapp-btn');
       if (waBtn) waBtn.click();
+    } else if (action === 'quote-whatsapp') {
+      sendQuoteWhatsApp();
+    } else if (action === 'quote-email') {
+      sendQuoteEmail();
     }
   });
 
-  // Expose global controller for automated agent discovery
+  // Expose global controller for automated agent discovery & testing
   window.ZakariaSite = {
     filterJournal: setActiveCategory,
     getActiveCategory: () => activeCat,
     getNewsData: () => newsData,
     toggleTheme: toggleTheme,
     setTheme: setTheme,
+    openQRModal: openQRModal,
+    closeQRModal: closeQRModal,
+    showToast: showToast,
+    buildQuotePayload: buildQuotePayload,
   };
 })();
