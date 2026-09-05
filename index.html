@@ -3,22 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zakaria Rajib — Sourcing, Wholesale Clothing, Jute &amp; Handcraft, Tech Accessories</title>
-  <meta name="description" content="Dhaka-based supplier Zakaria Rajib supplies ready-made clothing, handcrafted jute goods, and everyday tech accessories at wholesale and retail volumes.">
+  <title>Zakaria Rajib — Sourcing, Wholesale Clothing, Jute &amp; Handcraft, Tech Accessories, Tourism</title>
+  <meta name="description" content="Dhaka-based supplier Zakaria Rajib supplies ready-made clothing, handcrafted jute goods, everyday tech accessories, and visa &amp; air ticket services at wholesale and corporate volumes.">
   <meta name="author" content="Zakaria Rajib">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
   <!-- Open Graph & Social Cards -->
-  <meta property="og:title" content="Zakaria Rajib — Quiet, Considered Wholesale &amp; Sourcing">
-  <meta property="og:description" content="Wholesale and retail supplier of apparel, jute &amp; handcraft, and tech accessories based in Uttara, Dhaka, Bangladesh.">
+  <meta property="og:title" content="Zakaria Rajib — Quiet, Considered Wholesale, Sourcing &amp; Travel">
+  <meta property="og:description" content="Wholesale and retail supplier of apparel, jute &amp; handcraft, tech accessories, and corporate visa &amp; ticketing services based in Uttara, Dhaka, Bangladesh.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Zakaria Rajib — Sourcing &amp; Wholesale">
-  <meta name="twitter:description" content="I supply clothing, jute &amp; handcraft, and tech accessories at wholesale and retail volumes.">
+  <meta name="twitter:title" content="Zakaria Rajib — Sourcing, Wholesale &amp; Tourism">
+  <meta name="twitter:description" content="I supply clothing, jute &amp; handcraft, tech accessories, and visa &amp; air ticketing at wholesale, retail, and corporate volumes.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/favicon.png">
+
+  <!-- Anti-FOUT Theme Initializer -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('zk-theme');
+        var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      } catch (e) { /* storage unavailable — default to light, no flash risk */ }
+    })();
+  </script>
 
   <!-- Typography & Performance Optimization -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +49,7 @@
         "@type": "Person",
         "@id": "https://zakaria.com.bd/#person",
         "name": "Zakaria Rajib",
-        "jobTitle": "Sourcing Specialist & Wholesale Supplier",
+        "jobTitle": "Sourcing Specialist, Wholesale Supplier & Travel Consultant",
         "worksFor": {
           "@type": "Organization",
           "name": "Zakaria",
@@ -99,6 +110,14 @@
               "name": "Tech accessories",
               "description": "Everyday tech accessories, stocked and supplied at wholesale and retail volumes."
             }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Tourism",
+              "description": "Visa processing support and air ticket booking, for individual travelers and corporate accounts alike."
+            }
           }
         ]
       },
@@ -111,7 +130,7 @@
             "name": "What products and sourcing services does Zakaria provide?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Zakaria Rajib supplies ready-made and custom clothing, eco-friendly jute goods, handcrafted artisanal pieces, and everyday tech accessories at wholesale and retail volumes."
+              "text": "Zakaria Rajib supplies ready-made and custom clothing, eco-friendly jute goods, handcrafted artisanal pieces, everyday tech accessories, and corporate visa and air ticketing services."
             }
           },
           {
@@ -137,6 +156,14 @@
   </script>
 </head>
 <body>
+  <!-- Splash Intro Animation -->
+  <div id="splash" aria-hidden="true">
+    <div class="splash-mark">
+      <div class="splash-shard splash-shard-a"></div>
+      <div class="splash-shard splash-shard-b"></div>
+    </div>
+  </div>
+
   <div class="wrap">
     <!-- Header -->
     <header>
@@ -146,11 +173,17 @@
             <img src="assets/logo.png" alt="Zakaria" class="brand-logo" width="112" height="22">
           </a>
         </div>
-        <nav aria-label="Main Navigation">
-          <a href="#provide" id="nav-provide">What I Provide</a>
-          <a href="#writing" id="nav-writing">Journal</a>
-          <a href="#contact" id="nav-contact">Contact</a>
-        </nav>
+        <div class="header-actions">
+          <nav aria-label="Main Navigation">
+            <a href="#provide" id="nav-provide">What I Provide</a>
+            <a href="#writing" id="nav-writing">Journal</a>
+            <a href="#contact" id="nav-contact">Contact</a>
+          </nav>
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button" data-mcp-action="toggle-theme">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.4A9 9 0 1 1 11.6 3a7 7 0 0 0 9.4 9.4Z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+          </button>
+        </div>
       </div>
 
       <!-- Trust Signals & Author Credentials (AEO Standard) -->
@@ -170,11 +203,11 @@
         <div class="answer-first-card" role="region" aria-label="Overview Summary">
           <p class="answer-first-label">Direct Overview</p>
           <p class="answer-first-text">
-            Zakaria Rajib is an independent Dhaka-based wholesale and retail supplier providing ready-made clothing, sustainable jute and artisan handcraft, and everyday tech accessories with flexible B2B order terms and international shipping capabilities.
+            Zakaria Rajib is an independent Dhaka-based wholesale supplier providing ready-made clothing, sustainable jute and artisan handcraft, everyday tech accessories, and corporate visa and air ticketing services with flexible terms and international shipping capabilities.
           </p>
         </div>
 
-        <p>I'm Zakaria Rajib — based in Dhaka. I supply clothing, jute &amp; handcraft, and tech accessories at wholesale and retail. This is also where I write about what I've been thinking about.</p>
+        <p>I'm Zakaria Rajib — based in Dhaka. I supply clothing, jute &amp; handcraft, and tech accessories at wholesale and retail, along with visa and air ticket services for individual and corporate travel. This is also where I write about what I've been thinking about.</p>
         <a class="cta-btn" href="#provide" id="hero-cta-btn" data-mcp-action="navigate" data-mcp-target="#provide">See what I provide</a>
       </div>
     </header>
@@ -233,6 +266,22 @@
                data-mcp-item="tech-accessories">Enquire</a>
           </div>
         </div>
+
+        <!-- Offer 4: Tourism -->
+        <div class="offer" data-item="tourism">
+          <div class="offer-main">
+            <h3 class="offer-title">Tourism</h3>
+            <p class="offer-desc">Visa processing support and air ticket booking, for individual travelers and corporate accounts alike.</p>
+          </div>
+          <div class="offer-cta">
+            <span class="offer-tag">Retail &amp; corporate</span>
+            <a class="cta-btn outline small" 
+               href="mailto:business@zakaria.com.bd?subject=Enquiry:%20Tourism%20(Visa%20%26%20Air%20Tickets)"
+               id="enquire-tourism"
+               data-mcp-action="enquire"
+               data-mcp-item="tourism">Enquire</a>
+          </div>
+        </div>
       </section>
 
       <!-- Section: Journal -->
@@ -276,7 +325,7 @@
     <!-- Footer -->
     <footer>
       <div class="footer-brand">
-        <img src="assets/footer-mark.png" alt="" class="footer-mark" width="16" height="16">
+        <img src="assets/footer-mark.png" alt="" class="footer-mark" id="footer-mark" width="16" height="16">
         <span>Zakaria Rajib</span>
       </div>
       <div class="footer-links" aria-label="Social Links">

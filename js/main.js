@@ -5,6 +5,81 @@
 (function () {
   'use strict';
 
+  // --- Splash Screen Controller ---
+  const splash = document.getElementById('splash');
+  if (splash) {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function safeSessionGet(key) {
+      try { return sessionStorage.getItem(key); } catch (e) { return null; }
+    }
+    function safeSessionSet(key, value) {
+      try { sessionStorage.setItem(key, value); } catch (e) {}
+    }
+
+    if (safeSessionGet('zk-splash-shown')) {
+      splash.remove();
+    } else {
+      document.body.style.overflow = 'hidden';
+
+      const dismissSplash = () => {
+        splash.classList.add('hide');
+        document.body.style.overflow = '';
+        safeSessionSet('zk-splash-shown', '1');
+        setTimeout(() => splash.remove(), 650);
+      };
+
+      if (reducedMotion) {
+        dismissSplash();
+      } else {
+        setTimeout(() => {
+          splash.classList.add('reveal');
+          setTimeout(dismissSplash, 700);
+        }, 550);
+
+        splash.addEventListener('click', dismissSplash, { once: true });
+      }
+    }
+  }
+
+  // --- Dark Mode Theme Controller ---
+  const toggleBtn = document.getElementById('theme-toggle');
+  const footerMark = document.getElementById('footer-mark');
+  const htmlEl = document.documentElement;
+
+  function safeLocalSet(key, value) {
+    try { localStorage.setItem(key, value); } catch (e) {}
+  }
+
+  function updateFooterMark() {
+    if (!footerMark) return;
+    const isDark = htmlEl.getAttribute('data-theme') === 'dark';
+    footerMark.src = isDark ? 'assets/footer-mark-dark.png' : 'assets/footer-mark.png';
+  }
+
+  function setTheme(theme) {
+    if (theme === 'dark') {
+      htmlEl.setAttribute('data-theme', 'dark');
+      safeLocalSet('zk-theme', 'dark');
+    } else {
+      htmlEl.removeAttribute('data-theme');
+      safeLocalSet('zk-theme', 'light');
+    }
+    updateFooterMark();
+  }
+
+  function toggleTheme() {
+    const isDark = htmlEl.getAttribute('data-theme') === 'dark';
+    setTheme(isDark ? 'light' : 'dark');
+  }
+
+  updateFooterMark();
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', toggleTheme);
+  }
+
+  // --- Journal & Category Controller ---
   const container = document.getElementById('journal-entries');
   const updatedLabel = document.getElementById('journal-updated');
   const tabs = document.querySelectorAll('.journal-tab');
@@ -134,6 +209,10 @@
     const { action, params } = event.detail || {};
     if (action === 'filter-journal' && params && params.category) {
       setActiveCategory(params.category);
+    } else if (action === 'toggle-theme') {
+      toggleTheme();
+    } else if (action === 'set-theme' && params && params.theme) {
+      setTheme(params.theme);
     }
   });
 
@@ -142,5 +221,7 @@
     filterJournal: setActiveCategory,
     getActiveCategory: () => activeCat,
     getNewsData: () => newsData,
+    toggleTheme: toggleTheme,
+    setTheme: setTheme,
   };
 })();

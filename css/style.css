@@ -9,6 +9,17 @@
   --focus-ring: rgba(49, 80, 110, 0.35);
 }
 
+html[data-theme="dark"] {
+  --paper: #16181B;
+  --ink: #EDEDEB;
+  --muted: #9A9CA3;
+  --line: #2B2D31;
+  --accent: #7CA6C9;
+  --accent-hover: #96bcdb;
+  --accent-soft: rgba(124, 166, 201, 0.12);
+  --focus-ring: rgba(124, 166, 201, 0.35);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -26,6 +37,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.55;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 a {
@@ -44,6 +56,67 @@ button:focus-visible {
   max-width: 680px;
   margin: 0 auto;
   padding: 0 24px;
+}
+
+/* Splash Intro Animation */
+#splash {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease;
+}
+
+#splash.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.splash-mark {
+  position: relative;
+  width: 120px;
+  height: 163px;
+}
+
+.splash-shard {
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/footer-mark.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.75s cubic-bezier(.65, 0, .35, 1), opacity 0.6s ease 0.15s;
+}
+
+html[data-theme="dark"] .splash-shard {
+  background-image: url('../assets/footer-mark-dark.png');
+}
+
+.splash-shard-a {
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.splash-shard-b {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+#splash.reveal .splash-shard-a {
+  transform: translate(-70px, -90px);
+  opacity: 0;
+}
+
+#splash.reveal .splash-shard-b {
+  transform: translate(70px, 90px);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #splash, .splash-shard {
+    transition: none !important;
+  }
 }
 
 /* Header */
@@ -74,6 +147,17 @@ header {
   height: 22px;
   width: auto;
   display: block;
+  transition: filter 0.3s ease;
+}
+
+html[data-theme="dark"] .brand-logo {
+  filter: invert(1);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 nav {
@@ -89,6 +173,46 @@ nav a {
 
 nav a:hover {
   color: var(--accent);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.icon-sun {
+  display: none;
+}
+
+html[data-theme="dark"] .icon-moon {
+  display: none;
+}
+
+html[data-theme="dark"] .icon-sun {
+  display: block;
 }
 
 /* Trust Bar / Metadata (AEO Standard) */
@@ -228,7 +352,6 @@ section {
 }
 
 .section-intro {
-
   font-size: 14px;
   color: var(--muted);
   margin: 0 0 22px;
@@ -428,6 +551,11 @@ footer {
   .header-row {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .offer {

@@ -1,21 +1,24 @@
 # Zakaria Rajib — Sourcing, Wholesale, and Manufacturing Portfolio
 
-> Zakaria Rajib is an independent Dhaka-based wholesale supplier and sourcing specialist providing ready-made apparel, sustainable jute & artisan handicrafts, and everyday tech accessories.
+> Zakaria Rajib is an independent Dhaka-based wholesale supplier and sourcing specialist providing ready-made apparel, sustainable jute & artisan handicrafts, everyday tech accessories, and corporate visa & air ticketing services.
 
 ## Overview & Mission
 - **Founder & Operator**: Zakaria Rajib
 - **Location**: 34, Road 6/c, Sector 12, Uttara, Dhaka-1230, Bangladesh
 - **Contact**: business@zakaria.com.bd | +880 13090 77997
-- **Business Model**: Wholesale sourcing, custom production batches, export-grade fulfillment, and select retail supply.
+- **Business Model**: Wholesale sourcing, custom production batches, export-grade fulfillment, corporate travel booking, and retail supply.
 
 ## Key Sections & Offerings
-- [What I Provide](https://zakaria.com.bd/#provide): Wholesale and retail supply across three core pillars:
+- [What I Provide](https://zakaria.com.bd/#provide): Wholesale and retail supply across four core pillars:
   - **Clothing**: Custom and ready-made knitwear, denim, and woven apparel tailored for boutique and corporate orders.
   - **Jute & Handcraft**: Biodegradable jute products, diversified eco-textiles, and handcrafted homeware for international buyers.
   - **Tech Accessories**: Quality everyday electronic accessories, cables, chargers, and EDC hardware at volume pricing.
+  - **Tourism**: Visa processing support and flight ticketing for individual travelers and corporate client accounts.
 - [Journal](https://zakaria.com.bd/#writing): Curated daily updates and commentary covering the Bangladesh textile economy, sustainable export manufacturing, and regional business logistics.
 - [Contact & Inquiries](https://zakaria.com.bd/#contact): Direct B2B order consultation, sample requests, and wholesale quotations.
 
 ## WebMCP Actions for Agents
 - **Filter Journal**: Action `filter-journal` accepts parameter `category` (`all`, `fashion-textile`, `business`).
+- **Toggle Theme**: Action `toggle-theme` switches between light and dark luxury color palettes.
+- **Set Theme**: Action `set-theme` accepts parameter `theme` (`light` or `dark`).
 - **Send Wholesale Enquiry**: Mailto link `mailto:business@zakaria.com.bd` with prefilled subject parameters for immediate order triage.

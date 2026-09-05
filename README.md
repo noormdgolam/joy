@@ -1,45 +1,38 @@
 # Zakaria Rajib — Personal Website
 
-A light, superfast, quiet-luxury website for **Zakaria Rajib**, a Dhaka-based wholesale supplier of ready-made clothing, jute & handcraft, and tech accessories.
+A light, superfast, quiet-luxury website for **Zakaria Rajib**, a Dhaka-based wholesale supplier of ready-made clothing, jute & handcraft, everyday tech accessories, and corporate visa & air ticketing services.
+
+## Features
+
+- **Split Shard Splash Animation**: Subtle introductory brand mark reveal with sessionStorage caching (displays once per session, skip on click, respects `prefers-reduced-motion`).
+- **Dark Mode System**: Zero-FOUC inline detector, seamless toggle, curated dark palette tokens, and dynamic footer brand mark inversion.
+- **Four Provision Pillars**: Clothing, Jute & handcraft, Tech accessories, and Tourism (Visa processing & air ticketing).
+- **Automated Daily Journal**: Live client-side rendering from `news.json` with category filtering (`All`, `Fashion & Textile`, `Business`).
+- **AEO & WebMCP Standard**: Answer-First overview (<45 words), declarative entity headings (no question marks), JSON-LD `@graph` schema (`Person`, `LocalBusiness`, `FAQPage`), `robots.txt` AI crawler allowances, `llms.txt`, and full `data-mcp-action` attribute bindings.
 
 ## Tech Stack
 
-- Vanilla HTML5 + CSS3 + JavaScript (zero framework, zero dependencies)
+- Vanilla HTML5 + CSS3 + JavaScript (zero framework, zero runtime dependencies)
 - Google Fonts: Fraunces (serif display) + Inter (body)
-- AEO/GEO compliant: JSON-LD schema, `llms.txt`, `robots.txt`, WebMCP action bindings
+- Assets: Externalized binary PNGs for ultra-fast payload delivery (~15 KB HTML)
 
 ## File Structure
 
 ```
-├── index.html          # Semantic HTML5 with JSON-LD (Person, LocalBusiness, FAQPage)
+├── index.html               # Semantic HTML5 with JSON-LD and WebMCP bindings
 ├── css/
-│   └── style.css       # Custom design system with CSS variables
+│   └── style.css            # Custom design system with light/dark CSS variables and splash styles
 ├── js/
-│   └── main.js         # Journal controller (news.json fetcher, tab filter, WebMCP)
-├── news.json           # Curated fashion-textile & business headlines
-├── robots.txt          # AI-aware crawler policy (allows GPTBot, ClaudeBot, PerplexityBot)
-├── llms.txt            # LLM agent discovery & guidelines file
+│   └── main.js              # Splash, dark mode toggle, journal controller, WebMCP actions
+├── news.json                # Curated fashion-textile & business headlines
+├── robots.txt               # AI-aware crawler policy (allows GPTBot, ClaudeBot, PerplexityBot)
+├── llms.txt                 # LLM agent discovery & guidelines file
 └── assets/
     ├── favicon.png
     ├── logo.png
-    └── footer-mark.png
+    ├── footer-mark.png      # Light theme mark
+    └── footer-mark-dark.png # Dark theme mark
 ```
-
-## Performance
-
-- Document: **13.2 KB** (HTML only, assets externalized)
-- Zero JS frameworks, zero build steps
-- `content-visibility: auto` on sections for paint performance
-- Google Fonts with `display=swap` for FOUT prevention
-
-## AEO Standards Applied
-
-- Answer-First opening (<45 words) in hero section
-- Ultra-professional declarative entity headings (no colloquial question marks)
-- JSON-LD `FAQPage` schema decouples conversational queries from visual typography
-- `data-mcp-action` attributes on all interactive elements for AI agent discovery
-- `robots.txt` allows GPTBot, ClaudeBot, PerplexityBot, Googlebot
-- `llms.txt` provides structured agent guidelines
 
 ## Contact
 
