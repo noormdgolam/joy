@@ -4,6 +4,8 @@ A light, superfast, quiet-luxury website for **Zakaria Rajib**, a Dhaka-based wh
 
 ## Features
 
+- **QR-Code Visiting Card Optimization**: Tailored for instant mobile opening when scanned from physical visiting cards (instant sub-second payload, zero clutter, high readability).
+- **One-Tap Contact Save & WhatsApp**: Direct `assets/zakaria-rajib.vcf` (vCard) download to save Zakaria Rajib directly into iOS/Android phonebooks, plus direct WhatsApp chat integration.
 - **Split Shard Splash Animation**: Subtle introductory brand mark reveal with sessionStorage caching (displays once per session, skip on click, respects `prefers-reduced-motion`).
 - **Dark Mode System**: Zero-FOUC inline detector, seamless toggle, curated dark palette tokens, and dynamic footer brand mark inversion.
 - **Four Provision Pillars**: Clothing, Jute & handcraft, Tech accessories, and Tourism (Visa processing & air ticketing).

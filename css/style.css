@@ -499,6 +499,13 @@ section {
   padding-bottom: 44px;
 }
 
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
 .contact-details {
   margin-top: 26px;
   font-size: 14px;
@@ -570,6 +577,15 @@ footer {
     align-items: center;
     width: 100%;
     gap: 16px;
+  }
+
+  .contact-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .contact-actions .cta-btn {
+    width: 100%;
   }
 
   footer {

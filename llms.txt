@@ -21,4 +21,6 @@
 - **Filter Journal**: Action `filter-journal` accepts parameter `category` (`all`, `fashion-textile`, `business`).
 - **Toggle Theme**: Action `toggle-theme` switches between light and dark luxury color palettes.
 - **Set Theme**: Action `set-theme` accepts parameter `theme` (`light` or `dark`).
+- **Save Contact**: Action `save-contact` triggers direct download of `assets/zakaria-rajib.vcf` (vCard) for address book import.
+- **WhatsApp Chat**: Action `whatsapp` opens direct chat at `+880 13090 77997`.
 - **Send Wholesale Enquiry**: Mailto link `mailto:business@zakaria.com.bd` with prefilled subject parameters for immediate order triage.

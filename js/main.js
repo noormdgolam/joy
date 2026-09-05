@@ -213,6 +213,12 @@
       toggleTheme();
     } else if (action === 'set-theme' && params && params.theme) {
       setTheme(params.theme);
+    } else if (action === 'save-contact') {
+      const saveBtn = document.getElementById('save-contact-btn');
+      if (saveBtn) saveBtn.click();
+    } else if (action === 'whatsapp') {
+      const waBtn = document.getElementById('whatsapp-btn');
+      if (waBtn) waBtn.click();
     }
   });
 
